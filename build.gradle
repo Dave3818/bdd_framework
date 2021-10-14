@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repository.mulesoft.org/nexus/content/repositories/public/"
+    }
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.18'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation group: 'com.github.ralfstuckert.pdfbox-layout', name: 'pdfbox2-layout', version: '1.0.0'
+    compile ('org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M1') {
+        exclude group: "org.slf4j", module: "slf4j-jdk14"
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'io.cucumber:cucumber-java:6.10.4'
+    testImplementation 'io.cucumber:cucumber-testng:6.10.4'
+
+    compile(group: 'org.testng', name: 'testng', version:'6.14.3')
+    compile(group: 'org.seleniumhq.selenium',name: 'selenium-java',version:'3.141.59')
+      
+    implementation("io.github.bonigarcia:webdrivermanager:4.2.2")
+    implementation group: 'tech.grasshopper', name: 'extentreports-cucumber6-adapter', version: '2.7.0'
+    implementation 'com.google.guava:guava:29.0-jre'
+
+}
+
+test {
+    useTestNG()
+}
